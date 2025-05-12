@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- SEO Meta Tags -->
+  <title>Introducing the HCX Sensor Script for PRTG Monitoring</title>
+  <meta name="description" content="Learn how our HCX Sensor Script retrieves alerts from HCX Cloud Connector/Manager, monitors Service Mesh and Interconnect status, and integrates seamlessly with PRTG." />
+  <link rel="canonical" href="https://yourgithubusername.github.io/yourrepository/" />
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Introducing the HCX Sensor Script for PRTG Monitoring" />
+  <meta property="og:description" content="Learn how our HCX Sensor Script retrieves alerts, monitors essential components, and outputs a PRTG-compatible JSON format" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yourgithubusername.github.io/yourrepository/" />
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Base Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      background-color: #f6f6f6;
+      color: #333;
+      line-height: 1.6;
+    }
+    a {
+      color: #3498db;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Header */
+    header.site-header {
+      background: linear-gradient(135deg, #2c3e50, #3498db);
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    header.site-header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      font-weight: 700;
+    }
+    header.site-header p {
+      margin: 10px 0 0;
+      font-size: 1.2em;
+    }
+    
+    /* Navigation */
+    nav.main-navigation {
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav.main-navigation ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    nav.main-navigation li {
+      margin: 0 15px;
+    }
+    nav.main-navigation a {
+      padding: 10px;
+      display: block;
+      color: #333;
+    }
+    
+    /* Main Container */
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    /* Article Styles */
+    article h2,  
+    article h3 {
+      color: #2c3e50;
+      margin-top: 20px;
+    }
+    
+    article p {
+      margin: 1em 0;
+    }
+    
+    pre {
+      background: #f7f7f7;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-size: 0.95em;
+    }
+    
+    code {
+      font-family: Consolas, monospace;
+      background: #eee;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    
+    /* Table of Contents */
+    .toc {
+      background: #f0f0f0;
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .toc h3 {
+      margin-top: 0;
+    }
+    .toc ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .toc li {
+      margin: 5px 0;
+    }
+    
+    /* Footer */
+    footer.site-footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      background: #fff;
+      margin-top: 40px;
+      box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    }
+    
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav.main-navigation ul {
+        flex-direction: column;
+      }
+      nav.main-navigation li {
+        margin: 5px 0;
+      }
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Site Header -->
+  <header class="site-header">
+    <h1>Introducing the HCX Sensor Script</h1>
+    <p>Automating HCX Monitoring for PRTG Environments</p>
+  </header>
+  
+  <!-- Primary Navigation -->
+  <nav class="main-navigation">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#overview">Script Overview</a></li>
+      <li><a href="#usage">Usage &amp; Examples</a></li>
+      <li><a href="#benefits">Benefits</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Main Content Container -->
+  <div class="container">
+    <article>
+      <!-- Introduction Section -->
+      <section id="introduction">
+        <h2>1. Introduction</h2>
+        <p>
+          Are you tired of manually sifting through logs and missing critical alerts in your HCX environment? Our HCX Sensor Script automates the monitoring process by retrieving alerts, categorizing their severity, and reporting the status of essential components directly to PRTG.
+        </p>
+      </section>
+      
+      <!-- Script Overview Section -->
+      <section id="overview">
+        <h2>2. Script Overview</h2>
+        <p>
+          <strong>Purpose:</strong> The script retrieves alerts from HCX Cloud Connector/Manager and monitors Service Mesh and Interconnect statuses, outputting the information as a JSON payload for PRTG.
+        </p>
+        <p><strong>Key Features:</strong></p>
+        <ul>
+          <li>Fetches alerts via REST API using <code>curl.exe</code>.</li>
+          <li>Categorizes alerts into Critical, Warning, and Informational types.</li>
+          <li>Monitors HCX Service Mesh and Interconnect status via PowerCLI.</li>
+          <li>Outputs sensor data as JSON for seamless integration with PRTG.</li>
+        </ul>
+      </section>
+      
+      <!-- Table of Contents -->
+      <section class="toc">
+        <h3>Table of Contents</h3>
+        <ul>
+          <li><a href="#usage">3. Usage and Examples</a></li>
+          <li><a href="#benefits">4. Benefits and Advantages</a></li>
+          <li><a href="#conclusion">5. Conclusion</a></li>
+        </ul>
+      </section>
+      
+      <!-- Usage and Examples Section -->
+      <section id="usage">
+        <h2>3. Usage and Examples</h2>
+        <h3>Installation Instructions</h3>
+        <ol>
+          <li>Clone or download the <code>hcx_sensor.ps1</code> script from the GitHub repository.</li>
+          <li>Ensure your environment has PowerShell, PowerCLI, and <code>curl.exe</code> installed.</li>
+          <li>Configure your PRTG device with Windows credentials (these populate <code>prtg_windowsuser</code> and <code>prtg_windowspassword</code> environment variables).</li>
+        </ol>
+        <h3>Example Command</h3>
+        <pre><code>.\hcx_sensor.ps1 -hcx_manager &lt;HCX_Manager_IP&gt; -critThreshold 0.4 -warnThreshold 0.4</code></pre>
+        <h3>Sample Sensor Output</h3>
+        <pre><code>{
+  "prtg": {
+    "result": [
+      {"Channel": "Critical Alert", "Value": 0, "Unit": "Count", "LimitMode": "1", "LimitMaxError": 0.4},
+      {"Channel": "Warn Alert", "Value": 0, "Unit": "Count", "LimitMode": "1", "LimitMaxError": 0.4},
+      {"Channel": "Info Alert", "Value": 0, "Unit": "Count", "LimitMode": "0"},
+      {"Channel": "Total Alerts", "Value": 0, "Unit": "Count", "LimitMode": "0"},
+      {"Channel": "Service Mesh Down", "Value": 0, "Unit": "Count", "LimitMode": "1", "LimitMaxError": 0},
+      {"Channel": "Interconnect Down", "Value": 0, "Unit": "Count", "LimitMode": "1", "LimitMaxError": 0},
+      {"Channel": "Interconnect Tunnel Down", "Value": 0, "Unit": "Count", "LimitMode": "1", "LimitMaxError": 0}
+    ],
+    "text": "No Alerts | All HCXServiceMesh is UP"
+  }
+}</code></pre>
+      </section>
+      
+      <!-- Benefits and Advantages Section -->
+      <section id="benefits">
+        <h2>4. Benefits and Advantages</h2>
+        <ul>
+          <li>Automates repetitive monitoring tasks to reduce manual effort.</li>
+          <li>Provides real-time, actionable insights through centralized alerting.</li>
+          <li>Enhances operational efficiency and speeds up incident response.</li>
+          <li>Seamlessly integrates with PRTG, ensuring consistent monitoring across your environment.</li>
+        </ul>
+      </section>
+      
+      <!-- Conclusion Section -->
+      <section id="conclusion">
+        <h2>5. Conclusion</h2>
+        <p>
+          The HCX Sensor Script provides IT teams with an effective, automated solution for monitoring HCX environments with PRTG. By reducing manual oversight and ensuring immediate alert detection, it streamlines operations and improves system reliability.
+        </p>
+        <p>
+          Ready to try it out? <a href="https://github.com/akbarraen/Custom-PRTG-Sensor-Scripts/tree/main/VMware/HCX-HealthCheck" target="_blank">Download the script from GitHub</a> and start enhancing your monitoring process today.
+        </p>
+      </section>
+    </article>
+  </div>
+  
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2025 Akbar Raen. All rights reserved.</p>
+  </footer>
+</body>
+</html>
